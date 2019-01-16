@@ -1,0 +1,17 @@
+{
+  "name": "azuma_coding",
+  "version": "0.1.2",
+  "description": "my coding works gallery site",
+  "main": "index.html",
+  "scripts": {
+    "server": "live-server --browser=firefox",
+    "test": "node test/test-lib.js"
+  },
+  "keywords": [],
+  "author": "donny azuma",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  }
+}
