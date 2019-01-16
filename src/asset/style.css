@@ -1,0 +1,107 @@
+body {
+  background-color: hsl(250, 10%, 40%);
+  background-size: 100vh;
+  background-repeat: no-repeat;
+  background-position: center 100vh;
+  will-change: background-position;
+  transition: background-position 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
+  background-image: url('../img/sprites.png');
+}
+.floor2 {
+  box-shadow: 0 1px 3px black;
+}
+.hexagon {
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    transform: translate(-50%, -50%);
+    position: absolute;
+    background-size: 12vmin;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-color: hsl(300, 60%, 40%);
+    cursor: pointer;
+    will-change: transform, background-color, background-size;
+    transition: transform 300ms, background-color 300ms, background-size 300ms;
+    transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
+    background-image: url('../img/sprites.png')
+}
+.hexagon:hover {
+  background-color: hsl(310, 80%, 50%);
+  transform: translate(-50%, -50%) scale(1.2);
+  background-size: 14vmin;
+}
+#hint-box {
+  width: fit-content;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  will-change: opacity;
+  background-color: hsl(0, 0%, 0%, 0.6);
+  transition: opacity 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
+  transform: translateX(-50%);
+  opacity: 0;
+  padding: .6vmin 1.6vmin;
+  font-size: 4.8vmin;
+  border-radius: 5px;
+  letter-spacing: .4vmin;
+}
+#hint-box.active {
+  opacity: 1;
+}
+#hint-box>.hint-text {
+  font-weight: bold;
+  font-style: italic;
+  transition: transform 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
+  will-change: transform;
+  text-align: center;
+}
+#hint-box>#zh-hint {
+  transform: translateX(-50%);
+  color: white;
+  font-size: 4.8vmin;
+  text-shadow: 1px -1px 2px black, -1px 1px 2px black;
+}
+#hint-box.active>#zh-hint {
+  transform: translateX(0);
+}
+#hint-box>#en-hint {
+  transform: translateX(50%);
+  color: darkgray;
+  font-size: 3vmin;
+  text-shadow: 1px -1px 2px black, -1px 1px 2px black;
+}
+#hint-box.active>#en-hint {
+  transform: translateX(0);
+}
+#popup {
+  display: none;
+  opacity: 0;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 50%;
+  top: 50%;
+  will-change: opacity;
+  transition: opacity 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
+  transform: translate(-50%, -50%);
+  background-color: hsla(0, 0%, 0%, 0.9);
+  background-image: radial-gradient(gray, transparent)
+}
+#popup.visible {
+  opacity: 1;
+}
+#popup.exist {
+  display: block;
+}
+.vimeo-player {
+  width: 71.6vw;
+  height: 40vw;
+  left: 50%;
+  top: 50%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 0px 10px white;
+}

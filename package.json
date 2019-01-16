@@ -1,0 +1,23 @@
+{
+  "name": "azuma_coding",
+  "version": "0.1.5",
+  "description": "my coding works gallery site",
+  "main": "index.html",
+  "scripts": {
+    "s": "parcel src/index.html --out-dir=./",
+    "b": "parcel build src/index.html --out-dir=./",
+    "t": "node test/test-lib.js"
+  },
+  "keywords": [],
+  "author": "donny azuma",
+  "license": "ISC",
+  "dependencies": {
+    "@hyperapp/transitions": "^1.0.2",
+    "hyperapp": "^1.2.9",
+    "src": "^1.1.2"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.1",
+    "parcel-bundler": "^1.11.0"
+  }
+}
