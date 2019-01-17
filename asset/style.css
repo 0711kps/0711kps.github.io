@@ -1,5 +1,17 @@
+body {
+  background-color: black;
+}
 .hexagon {
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     transform: translate(-50%, -50%);
     position: absolute;
+    background-color: purple;
+    background-size: cover;
+    cursor: pointer;
+    will-change: transform background-color;
+    transition: transform 200ms, background-color 200ms;
+}
+.hexagon:hover {
+  background-color: pink;
+  transform: translate(-50%, -50%) scale(1.3);
 }

@@ -6,22 +6,32 @@ const randomIn = (min, max) => (
   ) + min
 )
 
+const rangeIn = (min, max) => (
+  [...new Array(max - min + 1).keys()].map(i => (i + min))
+)
+
+const cellSize = 7
+const viewHeight = Math.floor(window.innerHeight/ 100)
+const aspect = Math.floor(window.innerWidth / window.innerHeight * 10) / 10
+const cx = Math.floor(window.innerWidth / 2)
+const cy = Math.floor(window.innerHeight / 2)
+
 const directions = {
   odd: [
-    { x: -1, y: -1 },
-    { x: -1, y: 0 },
-    { x: -1, y: 1 },
     { x: 0, y: -1 },
     { x: 1, y: 0 },
-    { x: 0, y: 1 }
+    { x: 0, y: 1 },
+    { x: -1, y: 1 },
+    { x: -1, y: 0 },
+    { x: -1, y: -1 }
   ],
   even: [
-    { x: 0, y: -1 },
-    { x: -1, y: 0 },
-    { x: 0, y: 1 },
     { x: 1, y: -1 },
     { x: 1, y: 0 },
-    { x: 1, y: 1 }
+    { x: 1, y: 1 },
+    { x: 0, y: 1 },
+    { x: -1, y: 0 },
+    { x: 0, y: -1 }
   ]
 }
 
@@ -31,10 +41,28 @@ const cellExists = (cells, target) => (
   ))
 )
 
-const nextCell = lastCell => {
-  let directionBase = lastCell.y % 2 ? 'odd' : 'even'
-  let movement = directions[directionBase][randomIn(0, 5)]
-  return { x: lastCell.x + movement.x, y: lastCell.y + movement.y }
+const cellInsideBorder = cell => {
+  let borderLevel = 45
+  let winPos = toWindowPos(cell)
+  let realX = winPos.x * cellSize * 3 / 4 * viewHeight
+  let realY = winPos.y * cellSize * 3 / 4 * viewHeight
+  let isXLegal = realX > Math.floor(-borderLevel * viewHeight * aspect) + 1 &&
+    realX < Math.floor(borderLevel * viewHeight * aspect) - 1
+  let isYLegal = realY > Math.floor(-borderLevel * viewHeight) &&
+    realY < Math.floor(borderLevel * viewHeight)
+  return isXLegal && isYLegal
+}
+
+const shuffle = arr => {
+  let i = 0
+  while (i < arr.length) {
+    let randomIndex = randomIn(0, arr.length - 1)
+    let tmp = arr[i]
+    arr[i] = arr[randomIndex]
+    arr[randomIndex] = tmp
+    i++
+  }
+  return arr
 }
 
 const state = {
@@ -43,28 +71,50 @@ const state = {
   ]
 }
 
+const getNextCell = (targetCell, directionNumber) => {
+  let directionBase = targetCell.y % 2 ? 'odd' : 'even'
+  let movement = directions[directionBase][directionNumber]
+  return { x: targetCell.x + movement.x, y: targetCell.y + movement.y }
+}
+
+const getNextLegalMove = cells => {
+  let targetCell = cells[randomIn(0, cells.length - 1)]
+  let availableDirections = shuffle(rangeIn(0, 5))
+  let nextCell = null
+  while (!nextCell || cellExists(cells, nextCell) || !cellInsideBorder(nextCell)) {
+    nextCell = getNextCell(targetCell, availableDirections.shift())
+    if (availableDirections.length === 0) {
+      targetCell = cells[randomIn(0, cells.length - 1)]
+      availableDirections =shuffle(rangeIn(0, 5))
+    }
+  }
+  return nextCell
+}
+
+const cellGrow = (cells, amount) => {
+  if (amount > 0 && cells.length < 100) {
+    return cellGrow(cells.concat(getNextLegalMove(cells)), amount - 1)
+  } else {
+    return cells
+  }
+}
+
 const actions = {
-  go: direction => state => {
-    let nextC = nextCell(state.cells[state.cells.length - 1])
-    while (cellExists(state.cells, nextC)) {
-      nextC = nextCell(state.cells[state.cells.length - 1])
-    }
-    return {
-      cells: state.cells.concat(nextC)
-    }
-  } 
+  drawCells: amount => state => {
+    return { cells: cellGrow(state.cells, amount) }
+  }
 }
 
 // pos(position) format { x: additional pUnit, y: additional pUnit}
-const WorkCell = ({ size, color, pos }) => (
+const WorkCell = ({ pos }) => (
   h('div', {
     class: 'hexagon',
     style: {
-      width: `${size}em`,
-      height: `${size}em`,
-      backgroundColor: `${color}`,
-      left: `calc(50vw + ${pos.x * size / 4}em)`,
-      top: `calc(50vh + ${pos.y * size / 4}em)`
+      width: `${(cellSize - 1) * 3}vh`,
+      height: `${(cellSize - 1) * 3}vh`,
+      left: `calc(50vw + ${pos.x * cellSize * 3 / 4}vh)`, 
+      top: `calc(50vh + ${pos.y * cellSize * 3 / 4}vh)`,
+      backgroundImage: 'url(https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F5e%2F1b%2F12%2F5e1b12585af75b9bdcb2c1921ab17447.png&f=1)'
     }
   })
 )
@@ -74,11 +124,11 @@ const toWindowPos = pos => (
 )
 
 const view = (state, actions) => (
-  h('main', {}, [
+  h('div', { id: 'app-container' }, [
     state.cells.map(pos => (toWindowPos(pos))).map(pos => (
-      WorkCell({ size: 3, color: `hsl(${randomIn(0, 359)},${randomIn(30, 70)}%,${randomIn(30, 70)}%)`, pos: { x: pos.x, y: pos.y } })
+      WorkCell({ size: cellSize, color: 'red', pos: { x: pos.x, y: pos.y } })
     ))
   ])
 )
 const main = app(state, actions, view, document.body)
-setInterval(main.go, 1000)
+main.drawCells(30)
