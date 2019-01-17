@@ -11,10 +11,8 @@ const rangeIn = (min, max) => (
 )
 
 const cellSize = 7
-const viewHeight = Math.floor(window.innerHeight/ 100)
+const viewHeight = Math.floor(window.innerHeight / 100)
 const aspect = Math.floor(window.innerWidth / window.innerHeight * 10) / 10
-const cx = Math.floor(window.innerWidth / 2)
-const cy = Math.floor(window.innerHeight / 2)
 
 const directions = {
   odd: [
@@ -85,7 +83,7 @@ const getNextLegalMove = cells => {
     nextCell = getNextCell(targetCell, availableDirections.shift())
     if (availableDirections.length === 0) {
       targetCell = cells[randomIn(0, cells.length - 1)]
-      availableDirections =shuffle(rangeIn(0, 5))
+      availableDirections = shuffle(rangeIn(0, 5))
     }
   }
   return nextCell
@@ -112,9 +110,9 @@ const WorkCell = ({ pos }) => (
     style: {
       width: `${(cellSize - 1) * 3}vh`,
       height: `${(cellSize - 1) * 3}vh`,
-      left: `calc(50vw + ${pos.x * cellSize * 3 / 4}vh)`, 
+      left: `calc(50vw + ${pos.x * cellSize * 3 / 4}vh)`,
       top: `calc(50vh + ${pos.y * cellSize * 3 / 4}vh)`,
-      backgroundImage: 'url(https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F5e%2F1b%2F12%2F5e1b12585af75b9bdcb2c1921ab17447.png&f=1)'
+      backgroundImage: 'url(img/not-yet.png)'
     }
   })
 )
@@ -131,4 +129,4 @@ const view = (state, actions) => (
   ])
 )
 const main = app(state, actions, view, document.body)
-main.drawCells(30)
+main.drawCells(9)
