@@ -18,3 +18,22 @@ body {
   transform: translate(-50%, -50%) scale(1.2);
   background-size: 14vh;
 }
+#hint {
+  width: auto;
+  height: 8vh;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  background-color: hsla(0, 0%, 100%, 0.6);
+  will-change: transform;
+  transition: transform 200ms;
+  transform: translate(-50%, 100%);
+  text-align: center;
+  padding: .6vh 1.6vh;
+  font-size: 4.8vh;
+  border-radius: 5px;
+  letter-spacing: .4vh;
+}
+#hint.show {
+  transform: translate(-50%, 0%);
+}

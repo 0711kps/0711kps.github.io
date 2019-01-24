@@ -1,11 +1,12 @@
 const { h, app } = hyperapp
 const { Enter } = transitions
+const hint = document.getElementById("hint")
 
 // cells.details: { id, title, logo, vimeoUrl }
 // cells.positionList: { id, x, y }
 // updateCells: update cells object and posList object
 // pos(position) format { x: additional pUnit, y: additional pUnit}
-const WorkCell = ({ x, y, id }) => (
+const WorkCell = ({ x, y, id, title }) => (
   h('div', {
     class: 'hexagon',
     style: {
@@ -14,6 +15,16 @@ const WorkCell = ({ x, y, id }) => (
       left: `calc(50vw + ${x * CellConfig.cellSize * 3 / 4}vh)`,
       top: `calc(50vh + ${y * CellConfig.cellSize * 3 / 4}vh)`,
       backgroundImage: `url(img/${id}.png)`
+    },
+    onmouseenter: () => {
+      hint.innerText = title
+      hint.classList.add('show')
+    },
+    onmouseleave: () => {
+      hint.classList.remove('show')
+    },
+    onclick: () => {
+      alert(id)
     }
   })
 )
@@ -43,6 +54,7 @@ const state = {
     {
       id: 'aboutMe',
       type: 'resume',
+      title: '關於我',
       x: 0,
       y: 0,
       bgImg: 'not-yet'
