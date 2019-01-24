@@ -1,30 +1,65 @@
 const { h, app } = hyperapp
 const { Enter } = transitions
 const hint = document.getElementById("hint")
+const popup = document.getElementById("popup")
 
 // cells.details: { id, title, logo, vimeoUrl }
 // cells.positionList: { id, x, y }
 // updateCells: update cells object and posList object
 // pos(position) format { x: additional pUnit, y: additional pUnit}
-const WorkCell = ({ x, y, id, title }) => (
+
+const cellActions = {
+  link: detail => {
+    window.open(detail.url, '_blank')
+  },
+  mail: detail => {
+    window.location.href = `mailto:${detail.addr}`
+  },
+  vimeo: detail => {
+    let iframe = document.createElement('iframe')
+    iframe.classList.add('vimeo-player')
+    iframe.frameborder = "0"
+    iframe.src = `https://player.vimeo.com/video/${detail.vimeoId}`
+    popup.appendChild(iframe)
+    popup.classList.add('exist')
+    let vimeoEvent = () => {
+      popup.classList.remove('visible')
+      setTimeout(() => {
+        popup.classList.remove('exist')
+        iframe.remove()
+      }, 200)
+      popup.removeEventListener('click', vimeoEvent)
+    }
+    popup.addEventListener('click', vimeoEvent)
+    iframe.onload = () => {
+      popup.classList.add('visible')
+    }
+  }
+}
+const WorkCell = ({ x, y, id, title, type, typeDetail }) => (
   h('div', {
     class: 'hexagon',
     style: {
-      width: `${(CellConfig.cellSize - 1) * 3}vh`,
-      height: `${(CellConfig.cellSize - 1) * 3}vh`,
+      width: `${(CellConfig.cellSize - 0.8) * 3}vh`,
+      height: `${(CellConfig.cellSize - 0.8) * 3}vh`,
       left: `calc(50vw + ${x * CellConfig.cellSize * 3 / 4}vh)`,
       top: `calc(50vh + ${y * CellConfig.cellSize * 3 / 4}vh)`,
       backgroundImage: `url(img/${id}.png)`
     },
     onmouseenter: () => {
       hint.innerText = title
-      hint.classList.add('show')
+      hint.classList.add('active')
+      document.body.style.backgroundImage = `url(img/${id}.png)`
+      document.title = `AzumaCoding作品 - ${title}`
     },
     onmouseleave: () => {
-      hint.classList.remove('show')
+      hint.classList.remove('active')
+      document.body.removeAttribute('style')
+      document.title = 'AzumaCoding作品集'
     },
     onclick: () => {
-      alert(id)
+      cellActions[type](typeDetail)
+      popup.style.backgroundImage = `url(img/${id}.png)`
     }
   })
 )
