@@ -1,12 +1,17 @@
 {
   "name": "azuma_coding",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "my coding works gallery site",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "live-server --browser=firefox",
+    "test": "node test/test-lib.js"
   },
   "keywords": [],
   "author": "donny azuma",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  }
 }
