@@ -16,9 +16,12 @@ const cellActions = {
     window.location.href = `mailto:${detail.addr}`
   },
   vimeo: detail => {
-    let iframe = document.createElement('iframe')
-    iframe.classList.add('vimeo-player')
-    iframe.frameborder = '0'
+    let iframe = document.getElementsByName('video-player')
+    if(!iframe) {
+      iframe = document.createElement('iframe')
+      iframe.classList.add('vimeo-player')
+      iframe.frameborder = '0'
+    }
     iframe.src = `https://player.vimeo.com/video/${detail.vimeoId}`
     popup.appendChild(iframe)
     popup.classList.add('exist')
@@ -26,7 +29,6 @@ const cellActions = {
       popup.classList.remove('visible')
       setTimeout(() => {
         popup.classList.remove('exist')
-        iframe.remove()
       }, 200)
       popup.removeEventListener('click', vimeoEvent)
     }
