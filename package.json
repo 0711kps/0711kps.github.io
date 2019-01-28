@@ -4,7 +4,7 @@
   "description": "my coding works gallery site",
   "main": "index.html",
   "scripts": {
-    "server": "live-server --browser=firefox",
+    "server": "live-server --no-browser -q",
     "test": "node test/test-lib.js"
   },
   "keywords": [],
