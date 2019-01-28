@@ -60,6 +60,7 @@ const WorkCell = ({ x, y, id, title, type, typeDetail }) => (
       document.title = 'AzumaCoding作品集'
     },
     onclick: () => {
+      hint.innerText = '請稍等...'
       cellActions[type](typeDetail)
     }
   })
