@@ -18,7 +18,7 @@ const cellActions = {
   vimeo: detail => {
     let iframe = document.createElement('iframe')
     iframe.classList.add('vimeo-player')
-    iframe.frameborder = "0"
+    iframe.frameborder = '0'
     iframe.src = `https://player.vimeo.com/video/${detail.vimeoId}`
     popup.appendChild(iframe)
     popup.classList.add('exist')
@@ -59,7 +59,6 @@ const WorkCell = ({ x, y, id, title, type, typeDetail }) => (
     },
     onclick: () => {
       cellActions[type](typeDetail)
-      popup.style.backgroundImage = `url(img/${id}.png)`
     }
   })
 )
