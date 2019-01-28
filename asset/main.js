@@ -16,7 +16,7 @@ const cellActions = {
     window.location.href = `mailto:${detail.addr}`
   },
   vimeo: detail => {
-    let iframe = document.getElementsByName('video-player')
+    let iframe = document.getElementsByName('video-player')[0]
     if(!iframe) {
       iframe = document.createElement('iframe')
       iframe.classList.add('vimeo-player')
