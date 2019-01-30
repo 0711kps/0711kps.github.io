@@ -4,6 +4,9 @@ body {
   background-repeat: no-repeat;
   background-position: center 0;
 }
+.floor2 {
+  box-shadow: 0 1px 3px black;
+}
 .hexagon {
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     transform: translate(-50%, -50%);
@@ -11,13 +14,13 @@ body {
     background-size: 12vmin;
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    background-color: purple;
+    background-color: hsl(300, 60%, 40%);
     cursor: pointer;
     will-change: transform, background-color, background-size;
     transition: transform 200ms, background-color 200ms, background-size 200ms;
 }
 .hexagon:hover {
-  background-color: pink;
+  background-color: hsl(310, 80%, 50%);
   transform: translate(-50%, -50%) scale(1.2);
   background-size: 14vmin;
 }
