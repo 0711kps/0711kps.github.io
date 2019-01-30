@@ -4,6 +4,7 @@
       "id": "nfaimo",
       "type": "vimeo",
       "title": "消防署資訊室網站",
+      "enTitle": "NFAIMO",
       "typeDetail": {
         "vimeoId": "243515894"
       }
@@ -12,6 +13,7 @@
       "id": "kotodama",
       "type": "vimeo",
       "title": "言彈",
+      "enTitle": "Kotodama",
       "typeDetail": {
         "vimeoId": "024129889"
       }
@@ -20,6 +22,7 @@
       "id": "password-kun",
       "type": "link",
       "title": "密碼君",
+      "enTitle": "PasswordKun",
       "typeDetail": {
         "url": "https://github.com/0711kps/password_kun"
       }
@@ -28,6 +31,7 @@
       "id": "mail",
       "type": "mail",
       "title": "寄信給我",
+      "enTitle": "MailMeMaybe",
       "typeDetail": {
         "addr": "0711kps@gmail.com"
       }
@@ -36,6 +40,7 @@
       "id": "github",
       "type": "link",
       "title": "我的GitHub",
+      "enTitle": "MyGitHubAccount",
       "typeDetail": {
         "url": "https://github.com/0711kps"
       }

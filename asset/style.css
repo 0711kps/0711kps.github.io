@@ -21,24 +21,48 @@ body {
   transform: translate(-50%, -50%) scale(1.2);
   background-size: 14vmin;
 }
-#hint {
-  width: auto;
-  height: 8vmin;
+#hint-box {
+  width: fit-content;
   position: fixed;
   bottom: 0;
   left: 50%;
-  background-color: hsla(0, 0%, 100%, 0.6);
-  will-change: transform;
-  transition: transform 200ms;
-  transform: translate(-50%, 100%);
-  text-align: center;
+  will-change: opacity;
+  background-color: hsl(0, 0%, 0%, 0.6);
+  transition: opacity 200ms;
+  transform: translateX(-50%);
+  opacity: 0;
   padding: .6vmin 1.6vmin;
   font-size: 4.8vmin;
   border-radius: 5px;
   letter-spacing: .4vmin;
 }
-#hint.active {
-  transform: translate(-50%, 0%);
+#hint-box.active {
+  opacity: 1;
+}
+#hint-box>.hint-text {
+  font-weight: bold;
+  font-style: italic;
+  transition: transform 200ms;
+  will-change: transform;
+  text-align: center;
+}
+#hint-box>#zh-hint {
+  transform: translateX(-50%);
+  color: white;
+  font-size: 4.8vmin;
+  text-shadow: 1px -1px 2px black, -1px 1px 2px black;
+}
+#hint-box.active>#zh-hint {
+  transform: translateX(0);
+}
+#hint-box>#en-hint {
+  transform: translateX(50%);
+  color: darkgray;
+  font-size: 3vmin;
+  text-shadow: 1px -1px 2px black, -1px 1px 2px black;
+}
+#hint-box.active>#en-hint {
+  transform: translateX(0);
 }
 #popup {
   display: none;

@@ -1,6 +1,8 @@
 const { h, app } = hyperapp
 const { Enter } = transitions
-const hint = document.getElementById('hint')
+const hintBox = document.getElementById('hint-box')
+const zhHint = document.getElementById('zh-hint')
+const enHint = document.getElementById('en-hint')
 const popup = document.getElementById('popup')
 
 // cells.details: { id, title, logo, vimeoUrl }
@@ -39,7 +41,7 @@ const cellActions = {
     //
   }
 }
-const WorkCell = ({ x, y, id, title, type, typeDetail }) => (
+const WorkCell = ({ x, y, id, title, enTitle, type, typeDetail }) => (
   h('div', {
     class: 'hexagon',
     style: {
@@ -50,18 +52,19 @@ const WorkCell = ({ x, y, id, title, type, typeDetail }) => (
       backgroundImage: `url(img/${id}.png)`
     },
     onmouseenter: () => {
-      hint.innerText = title
-      hint.classList.add('active')
+      zhHint.innerText = title
+      enHint.innerText = enTitle
+      hintBox.classList.add('active')
       document.body.style.backgroundImage = `url(img/${id}.png)`
       document.title = `AzumaCoding作品 - ${title}`
     },
     onmouseleave: () => {
-      hint.classList.remove('active')
+      hintBox.classList.remove('active')
       document.body.removeAttribute('style')
       document.title = 'AzumaCoding作品集'
     },
     onclick: () => {
-      hint.innerText = '請稍等...'
+      zhHint.innerText = '請稍等...'
       cellActions[type](typeDetail)
     }
   })
@@ -93,6 +96,7 @@ const state = {
       id: 'aboutMe',
       type: 'resume',
       title: '關於我',
+      enTitle: 'AboutMe',
       x: 0,
       y: 0,
       bgImg: 'not-yet'
