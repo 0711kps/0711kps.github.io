@@ -1,6 +1,6 @@
 body {
-  background-color: hsl(0, 0%, 20%);
-  background-size: 90vh;
+  background-color: hsl(250, 10%, 40%);
+  background-size: 90vmin;
   background-repeat: no-repeat;
   background-position: center 0;
 }
@@ -8,7 +8,7 @@ body {
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     transform: translate(-50%, -50%);
     position: absolute;
-    background-size: 12vh;
+    background-size: 12vmin;
     background-position: 50% 50%;
     background-repeat: no-repeat;
     background-color: purple;
@@ -19,11 +19,11 @@ body {
 .hexagon:hover {
   background-color: pink;
   transform: translate(-50%, -50%) scale(1.2);
-  background-size: 14vh;
+  background-size: 14vmin;
 }
 #hint {
   width: auto;
-  height: 8vh;
+  height: 8vmin;
   position: fixed;
   bottom: 0;
   left: 50%;
@@ -32,10 +32,10 @@ body {
   transition: transform 200ms;
   transform: translate(-50%, 100%);
   text-align: center;
-  padding: .6vh 1.6vh;
-  font-size: 4.8vh;
+  padding: .6vmin 1.6vmin;
+  font-size: 4.8vmin;
   border-radius: 5px;
-  letter-spacing: .4vh;
+  letter-spacing: .4vmin;
 }
 #hint.active {
   transform: translate(-50%, 0%);
@@ -51,6 +51,7 @@ body {
   will-change: opacity;
   transition: opacity 200ms;
   transform: translate(-50%, -50%);
+  background-color: hsla(0, 0%, 0%, 0.9);
   background-image: radial-gradient(gray, transparent)
 }
 #popup.visible {
@@ -60,10 +61,11 @@ body {
   display: block;
 }
 .vimeo-player {
-  width: 140vh;
-  height: 80vh;
+  width: 80vw;
+  height: 50vw;
   left: 50%;
   top: 50%;
   position: fixed;
   transform: translate(-50%, -50%);
+  box-shadow: 0px 0px 10px white;
 }

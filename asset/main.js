@@ -34,6 +34,9 @@ const cellActions = {
     iframe.onload = () => {
       popup.classList.add('visible')
     }
+  },
+  text: detail => {
+    //
   }
 }
 const WorkCell = ({ x, y, id, title, type, typeDetail }) => (
