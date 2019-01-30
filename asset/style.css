@@ -17,7 +17,8 @@ body {
     background-color: hsl(300, 60%, 40%);
     cursor: pointer;
     will-change: transform, background-color, background-size;
-    transition: transform 200ms, background-color 200ms, background-size 200ms;
+    transition: transform 300ms, background-color 300ms, background-size 300ms;
+    transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 .hexagon:hover {
   background-color: hsl(310, 80%, 50%);
@@ -31,7 +32,8 @@ body {
   left: 50%;
   will-change: opacity;
   background-color: hsl(0, 0%, 0%, 0.6);
-  transition: opacity 200ms;
+  transition: opacity 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
   transform: translateX(-50%);
   opacity: 0;
   padding: .6vmin 1.6vmin;
@@ -45,7 +47,8 @@ body {
 #hint-box>.hint-text {
   font-weight: bold;
   font-style: italic;
-  transition: transform 200ms;
+  transition: transform 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
   will-change: transform;
   text-align: center;
 }
@@ -76,7 +79,8 @@ body {
   left: 50%;
   top: 50%;
   will-change: opacity;
-  transition: opacity 200ms;
+  transition: opacity 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
   transform: translate(-50%, -50%);
   background-color: hsla(0, 0%, 0%, 0.9);
   background-image: radial-gradient(gray, transparent)
