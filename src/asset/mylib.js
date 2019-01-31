@@ -1,4 +1,4 @@
-const CellConfig = {
+const Config = {
   cellSize: 7,
   viewHeight: Math.floor(window.innerHeight / 100),
   aspect: Math.floor(window.innerWidth / window.innerHeight * 10) / 10
@@ -34,7 +34,7 @@ const rangeIn = (min, max) => (
 )
 
 const calcNextPos = positionArray => {
-  if(positionArray.length === 0) { return { x: 0, y: 0 } }
+  if (positionArray.length === 0) { return { x: 0, y: 0 } }
   let basePosition = positionArray[randomIn(0, positionArray.length - 1)]
   let directionType = basePosition.y % 2 ? 'odd' : 'even'
   let randomDirection = randomIn(0, 5)
@@ -51,7 +51,7 @@ const getNextPos = positionArray => {
 }
 
 const configurePosition = (currentCells, newCells) => {
-  let positionArray = currentCells.map(cell => ({ x: cell.x, y: cell.y  }))
+  let positionArray = currentCells.map(cell => ({ x: cell.x, y: cell.y }))
   return newCells.map(newCell => {
     let cellPos = getNextPos(positionArray)
     let completeNewCell = Object.assign({}, newCell, toWindowPos(cellPos))
@@ -73,12 +73,12 @@ const positionConflict = (positionList, targetCell) => (
 const positionInsideBorder = cell => {
   let borderLevel = 45
   let winPos = toWindowPos(cell)
-  let realX = winPos.x * CellConfig.cellSize * 3 / 4 * CellConfig.viewHeight
-  let realY = winPos.y * CellConfig.cellSize * 3 / 4 * CellConfig.viewHeight
-  let isXLegal = realX > Math.floor(-borderLevel * CellConfig.viewHeight * CellConfig.aspect) + 1 &&
-    realX < Math.floor(borderLevel * CellConfig.viewHeight * CellConfig.aspect) - 1
-  let isYLegal = realY > Math.floor(-borderLevel * CellConfig.viewHeight) &&
-    realY < Math.floor(borderLevel * CellConfig.viewHeight)
+  let realX = winPos.x * Config.cellSize * 3 / 4 * Config.viewHeight
+  let realY = winPos.y * Config.cellSize * 3 / 4 * Config.viewHeight
+  let isXLegal = realX > Math.floor(-borderLevel * Config.viewHeight * Config.aspect) + 1 &&
+    realX < Math.floor(borderLevel * Config.viewHeight * Config.aspect) - 1
+  let isYLegal = realY > Math.floor(-borderLevel * Config.viewHeight) &&
+    realY < Math.floor(borderLevel * Config.viewHeight)
   return isXLegal && isYLegal
 }
 
@@ -86,4 +86,4 @@ const toWindowPos = pos => (
   pos.y % 2 ? { x: pos.x * 4 - 2, y: pos.y * 3 } : { x: pos.x * 4, y: pos.y * 3 }
 )
 
-export { rangeIn, configurePosition, CellConfig }
+export { rangeIn, configurePosition, Config }

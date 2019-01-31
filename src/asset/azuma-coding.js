@@ -1,16 +1,12 @@
 import { h, app } from 'hyperapp'
 import { Enter } from '@hyperapp/transitions'
 import JSONinfo from './cellsInfo.json'
-import { configurePosition, CellConfig } from './mylib'
+import { configurePosition, Config } from './mylib'
 const hintBox = document.getElementById('hint-box')
 const zhHint = document.getElementById('zh-hint')
 const enHint = document.getElementById('en-hint')
 const popup = document.getElementById('popup')
-
-// cells.details: { id, title, logo, vimeoUrl }
-// cells.positionList: { id, x, y }
-// updateCells: update cells object and posList object
-// pos(position) format { x: additional pUnit, y: additional pUnit}
+let hintLock = false
 
 const cellActions = {
   link: detail => {
@@ -20,6 +16,10 @@ const cellActions = {
     window.location.href = `mailto:${detail.addr}`
   },
   vimeo: detail => {
+    hintLock = true
+    hintBox.classList.add('active')
+    zhHint.innerText = '請稍等...'
+    enHint.innerText = 'please wait...'
     let vimeoEvent = () => {
       popup.classList.remove('visible')
       setTimeout(() => {
@@ -36,38 +36,53 @@ const cellActions = {
     popup.appendChild(iframe)
     popup.classList.add('exist')
     iframe.onload = () => {
+      hintBox.classList.remove('active')
       popup.classList.add('visible')
+      hintLock = false
     }
   },
   text: detail => {
     //
   }
 }
-const WorkCell = ({ x, y, id, title, enTitle, type, typeDetail, imgIndex }) => (
+const WorkCell = (
+  {
+    x,
+    y,
+    id,
+    title,
+    enTitle,
+    type,
+    typeDetail,
+    imgIndex
+  }) => (
   h('div', {
     class: 'hexagon',
     style: {
-      width: `${(CellConfig.cellSize - 0.8) * 3}vmin`,
-      height: `${(CellConfig.cellSize - 0.8) * 3}vmin`,
-      left: `calc(50vw + ${x * CellConfig.cellSize * 0.75}vmin)`,
-      top: `calc(50vh + ${y * CellConfig.cellSize * 0.75}vmin)`,
-      backgroundSize: `${(CellConfig.cellSize - 0.8) * 3}vmin`,
-      backgroundPosition: `0 -${imgIndex * (CellConfig.cellSize - 0.8) * 3}vmin`
+      width: `${(Config.cellSize - 0.8) * 3}vmin`,
+      height: `${(Config.cellSize - 0.8) * 3}vmin`,
+      left: `calc(50vw + ${x * Config.cellSize * 0.75}vmin)`,
+      top: `calc(50vh + ${y * Config.cellSize * 0.75}vmin)`,
+      backgroundSize: `${(Config.cellSize - 0.8) * 3}vmin`,
+      backgroundPosition: `0 -${imgIndex * (Config.cellSize - 0.8) * 3}vmin`
     },
     onmouseenter: () => {
       zhHint.innerText = title
       enHint.innerText = enTitle
-      hintBox.classList.add('active')
-      document.title = `AzumaCoding作品 - ${title}`
-      document.body.style.backgroundPosition = `center -${100 * imgIndex}vh`
+      if (!hintLock) {
+        hintBox.classList.add('active')
+        document.title = `AzumaCoding作品 - ${title}`
+        document.body.style.backgroundPosition = `center -${100 * imgIndex}vh`
+      }
     },
     onmouseleave: () => {
-      hintBox.classList.remove('active')
-      document.body.removeAttribute('style')
-      document.title = 'AzumaCoding作品集'
+      if (!hintLock) {
+        hintBox.classList.remove('active')
+        document.body.removeAttribute('style')
+        document.title = 'AzumaCoding作品集'
+      }
     },
     onclick: () => {
-      zhHint.innerText = '請稍等...'
       cellActions[type](typeDetail)
     }
   })
@@ -88,7 +103,14 @@ const view = (state, actions) => (
   h(
     'div', { id: 'app-container' },
     state.cells.map(cell => (
-      Enter({ css: { opacity: '0' }, delay: 100 + delayIndex++ * 280, time: 300 }, [WorkCell(cell)])
+      Enter(
+        {
+          css: { opacity: '0' },
+          delay: 100 + delayIndex++ * 280,
+          time: 300
+        },
+        [WorkCell(cell, Config, { hintLock: hintLock, zhHint: zhHint, enHint: enHint, hintBox: hintBox })]
+      )
     ))
   )
 )
