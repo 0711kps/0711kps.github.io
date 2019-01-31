@@ -1,9 +1,7 @@
-const CellConfig = {}
-
-if (typeof window === 'object') {
-  CellConfig.cellSize = 7
-  CellConfig.viewHeight = Math.floor(window.innerHeight / 100)
-  CellConfig.aspect = Math.floor(window.innerWidth / window.innerHeight * 10) / 10
+const CellConfig = {
+  cellSize: 7,
+  viewHeight: Math.floor(window.innerHeight / 100),
+  aspect: Math.floor(window.innerWidth / window.innerHeight * 10) / 10
 }
 
 const directions = {
@@ -36,6 +34,7 @@ const rangeIn = (min, max) => (
 )
 
 const calcNextPos = positionArray => {
+  if(positionArray.length === 0) { return { x: 0, y: 0 } }
   let basePosition = positionArray[randomIn(0, positionArray.length - 1)]
   let directionType = basePosition.y % 2 ? 'odd' : 'even'
   let randomDirection = randomIn(0, 5)
@@ -87,6 +86,4 @@ const toWindowPos = pos => (
   pos.y % 2 ? { x: pos.x * 4 - 2, y: pos.y * 3 } : { x: pos.x * 4, y: pos.y * 3 }
 )
 
-if (typeof module === 'object') {
-  module.exports = { rangeIn, calcNextPos, positionConflict }
-}
+export { rangeIn, configurePosition, CellConfig }

@@ -1,8 +1,12 @@
 body {
   background-color: hsl(250, 10%, 40%);
-  background-size: 90vmin;
+  background-size: 100vh;
   background-repeat: no-repeat;
-  background-position: center 0;
+  background-position: center 100vh;
+  will-change: background-position;
+  transition: background-position 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
+  background-image: url('../img/sprites.png');
 }
 .floor2 {
   box-shadow: 0 1px 3px black;
@@ -19,6 +23,7 @@ body {
     will-change: transform, background-color, background-size;
     transition: transform 300ms, background-color 300ms, background-size 300ms;
     transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
+    background-image: url('../img/sprites.png')
 }
 .hexagon:hover {
   background-color: hsl(310, 80%, 50%);
