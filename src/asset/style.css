@@ -4,7 +4,7 @@ body {
   background-repeat: no-repeat;
   background-position: center 100vh;
   will-change: background-position;
-  transition: background-position 300ms;
+  transition: background-position 500ms;
   transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
   background-image: url('../img/sprites.png');
 }
@@ -21,7 +21,7 @@ body {
     background-color: hsl(300, 60%, 40%);
     cursor: pointer;
     will-change: transform, background-color, background-size;
-    transition: transform 300ms, background-color 300ms, background-size 300ms;
+    transition: transform 500ms, background-color 500ms, background-size 500ms;
     transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
     background-image: url('../img/sprites.png')
 }
@@ -31,20 +31,19 @@ body {
   background-size: 14vmin;
 }
 #hint-box {
-  width: fit-content;
   position: fixed;
   bottom: 0;
   left: 50%;
   will-change: opacity;
   background-color: hsl(0, 0%, 0%, 0.6);
-  transition: opacity 300ms;
+  transition: opacity 400ms;
   transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
   transform: translateX(-50%);
-  opacity: 0;
   padding: .6vmin 1.6vmin;
   font-size: 4.8vmin;
   border-radius: 5px;
   letter-spacing: .4vmin;
+  opacity: 0;
   pointer-events: none;
 }
 #hint-box.active {
@@ -53,7 +52,7 @@ body {
 #hint-box>.hint-text {
   font-weight: bold;
   font-style: italic;
-  transition: transform 300ms;
+  transition: transform 500ms;
   transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
   will-change: transform;
   text-align: center;
@@ -61,21 +60,18 @@ body {
   -moz-user-select: none;
 }
 #hint-box>#zh-hint {
-  transform: translateX(-50%);
   color: white;
   font-size: 4.8vmin;
   text-shadow: 1px -1px 2px black, -1px 1px 2px black;
-}
-#hint-box.active>#zh-hint {
-  transform: translateX(0);
+  transform: translateX(50%);
 }
 #hint-box>#en-hint {
-  transform: translateX(50%);
   color: darkgray;
   font-size: 3vmin;
   text-shadow: 1px -1px 2px black, -1px 1px 2px black;
+  transform: translateX(-50%);
 }
-#hint-box.active>#en-hint {
+#hint-box.active>#en-hint, #hint-box.active>#zh-hint {
   transform: translateX(0);
 }
 #popup {
