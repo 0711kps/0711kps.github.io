@@ -1,3 +1,5 @@
 package-lock.json
 node_modules
 .cache
+dev_public/*
+!dev_public/.gitkeep

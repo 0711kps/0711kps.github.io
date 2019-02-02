@@ -45,6 +45,7 @@ body {
   font-size: 4.8vmin;
   border-radius: 5px;
   letter-spacing: .4vmin;
+  pointer-events: none;
 }
 #hint-box.active {
   opacity: 1;
@@ -56,6 +57,8 @@ body {
   transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
   will-change: transform;
   text-align: center;
+  user-select: none;
+  -moz-user-select: none;
 }
 #hint-box>#zh-hint {
   transform: translateX(-50%);

@@ -94,7 +94,12 @@ const WorkCell = (
 )
 
 const state = {
-  cells: []
+  cells: [],
+  hint: {
+    zh: '',
+    en: '',
+    active: false
+  }
 }
 
 const actions = {
@@ -103,16 +108,19 @@ const actions = {
   )
 }
 
-let delayIndex = 0
+let cellDelayIndex = 0
 const view = (state, actions) => (
   h(
     'div', { id: 'app-container' },
     state.cells.map(cell => (
       Enter(
         {
-          css: { opacity: '0' },
-          delay: 100 + delayIndex++ * 280,
-          time: 300
+          css: { opacity: '0', pointerEvents: 'none' },
+          delay: 100 + [...new Array(cellDelayIndex++).keys()]
+            .map(n => (Math.floor(800 * 0.65 ** n)))
+            .reduce((sum, n) => (sum + n), 0) + 100,
+          time: 300,
+          easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
         },
         [WorkCell(cell, Config, { hintLock: hintLock, zhHint: zhHint, enHint: enHint, hintBox: hintBox })]
       )
@@ -125,5 +133,4 @@ const main = app(state, actions, view, document.body)
 let cloneState = JSON.parse(JSON.stringify(state))
 let newCellsWithPos = configurePosition(state.cells, JSONinfo.cells)
 cloneState.cells.push(...newCellsWithPos)
-console.log(cloneState)
 main.updateCells(cloneState)
