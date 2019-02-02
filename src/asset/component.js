@@ -25,10 +25,12 @@ const Cell = (
     },
     onmouseenter: () => {
       document.title = title
+      document.body.style.backgroundPosition = `center ${imgIndex * -100}vh`
       return updateHint({ zh: title, en: enTitle, active: true })
     },
     onmouseleave: () => {
       document.title = 'AzumaCoding作品集'
+      document.body.removeAttribute('style')
       return updateHint({ active: false })
     },
     onclick: () => {
