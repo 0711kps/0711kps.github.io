@@ -6,12 +6,12 @@ const Cell = (
     y,
     title,
     enTitle,
-    type,
-    typeDetail,
+    cellEvent,
     imgIndex,
     config,
     cellActions,
-    updateHint
+    updateHint,
+    handleCell
   }) => (
   h('div', {
     class: 'hexagon',
@@ -33,9 +33,7 @@ const Cell = (
       document.body.removeAttribute('style')
       return updateHint({ active: false })
     },
-    onclick: () => {
-      cellActions[type](typeDetail)
-    }
+    onclick: () => handleCell(cellEvent)
   })
 )
 
@@ -46,8 +44,12 @@ const Hint = ({ active, zh, en }) => (
   </div>
 )
 
-const VimeoPlayer = ({ src }) => (
-  '123'
+const Resume = ({ detail }) => (
+  'resume'
 )
 
-export { Hint, Cell, VimeoPlayer }
+const VimeoPlayer = ({ detail }) => (
+  <iframe id='vimeo-player' src={'https://player.vimeo.com/video/' + detail.vimeoId} />
+)
+
+export { Hint, Cell, VimeoPlayer, Resume }

@@ -75,8 +75,8 @@ body {
   transform: translateX(0);
 }
 #popup {
-  display: none;
   opacity: 0;
+  pointer-events: none;
   position: fixed;
   width: 100%;
   height: 100%;
@@ -89,13 +89,14 @@ body {
   background-color: hsla(0, 0%, 0%, 0.9);
   background-image: radial-gradient(gray, transparent)
 }
-#popup.visible {
+#popup.active {
   opacity: 1;
+  pointer-events: auto;
 }
-#popup.exist {
-  display: block;
+.now-loading {
+  cursor: progress;
 }
-.vimeo-player {
+#vimeo-player {
   width: 71.6vw;
   height: 40vw;
   left: 50%;

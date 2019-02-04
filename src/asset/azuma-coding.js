@@ -2,18 +2,13 @@ import { h, app } from 'hyperapp'
 import { Enter, Exit } from '@hyperapp/transitions'
 import JSONinfo from './cellsInfo.json'
 import { configurePosition, Config } from './mylib'
-import { Hint, Cell } from './component'
+import { Hint, Cell, VimeoPlayer, Resume } from './component'
 const popup = document.getElementById('popup')
 let hintLock = false
 
 const cellActions = {
-  link: detail => {
-    window.open(detail.url, '_blank')
-  },
-  mail: detail => {
-    window.location.href = `mailto:${detail.addr}`
-  },
   vimeo: detail => {
+    actions.updatePopUp({active: true, content: '', type: ''})
     //hintLock = true
     //hintBox.classList.add('active')
     //zhHint.innerText = '請稍等...'
@@ -43,27 +38,48 @@ const cellActions = {
       //popup.classList.add('visible')
       //hintLock = false
     //}
-  },
-  text: detail => {
-    //
   }
 }
 
 const state = {
   cells: [],
   hint: {
+    active: false,
     zh: '',
-    en: '',
-    active: false
+    en: ''
+  },
+  popup: {
+    active: false,
+    type: '',
+    detail: ''
   }
 }
 
 const actions = {
   updateCells: cells => state => (
-    { cells: state.cells.concat(cells), hint: state.hint }
+    { cells: state.cells.concat(cells) }
   ),
   updateHint: hint => state => (
-    { cells: state.cells, hint: Object.assign({}, state.hint, hint) }
+    { hint: Object.assign({}, state.hint, hint) }
+  ),
+  handleCell: cellEvent => state => {
+    switch (cellEvent.type) {
+      case 'link':
+        window.open(cellEvent.detail.url, '_blank')
+        break
+      case 'mail':
+        window.location.href = `mailto:${cellEvent.detail.addr}`
+        break
+      case 'vimeo':
+        return { popup: { active: true, type: cellEvent.type, detail: cellEvent.detail } }
+        break
+      case 'resume':
+        return { popup: { active: true } }
+        break
+    }
+  },
+  resetPopUp: () => state => (
+    { popup: { active: false, type: '', detail: '' } }
   )
 }
 
@@ -86,17 +102,19 @@ const view = (state, actions) => (
           y={cell.y}
           title={cell.title}
           enTitle={cell.enTitle}
-          type={cell.type}
-          typeDetail={cell.typeDetail}
+          cellEvent={cell.cellEvent}
           imgIndex={cell.imgIndex}
           config={Config}
-          cellActions={cellActions}
           updateHint={actions.updateHint}
+          handleCell={actions.handleCell}
         />
       </Enter>
     ))}
     <Hint zh={state.hint.zh} en={state.hint.en} active={state.hint.active} />
-    <div id='popup' />
+    <div id='popup' class={state.popup.active && 'active'} onclick={() => actions.resetPopUp()}>
+      {state.popup.type === 'vimeo' && <VimeoPlayer detail={state.popup.detail} />}
+      {state.popup.type === 'resume' && <Resume detail={state.popup.detail} />}
+    </div>
   </div>
 )
 

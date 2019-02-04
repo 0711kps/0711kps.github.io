@@ -1,55 +1,66 @@
 {
   "cells": [
     {
-      "type": "resume",
       "title": "關於我",
       "enTitle": "About Me",
-      "imgIndex": 0
+      "imgIndex": 0,
+      "cellEvent": {
+        "type": "resume",
+        "detail": null
+      }
     },
     {
-      "type": "vimeo",
       "title": "消防署資訊室網站",
       "enTitle": "NFAIMO",
-      "typeDetail": {
-        "vimeoId": "243515894"
-      },
-      "imgIndex": 4
+      "imgIndex": 4,
+      "cellEvent": {
+        "type": "vimeo",
+        "detail": {
+          "vimeoId": "243515894"
+        }
+      }
     },
     {
-      "type": "vimeo",
       "title": "言彈",
       "enTitle": "Kotodama",
-      "typeDetail": {
+      "imgIndex": 2,
+      "cellEvent": {
+        "type": "vimeo",
         "vimeoId": "024129889"
-      },
-      "imgIndex": 2
+      }
     },
     {
-      "type": "link",
       "title": "密碼君",
       "enTitle": "Password Kun",
-      "typeDetail": {
-        "url": "https://github.com/0711kps/password_kun"
-      },
-      "imgIndex": 5
+      "imgIndex": 5,
+      "cellEvent": {
+        "type": "link",
+        "detail": {
+          "url": "https://github.com/0711kps/password_kun"
+        }
+      }
     },
     {
-      "type": "mail",
       "title": "寄信給我",
       "enTitle": "Mail Me Maybe",
-      "typeDetail": {
-        "addr": "0711kps@gmail.com"
-      },
-      "imgIndex": 3
+      "imgIndex": 3,
+      "cellEvent": {
+        "type": "mail",
+        "detail": {
+          "addr": "0711kps@gmail.com"
+        }
+      }
     },
     {
-      "type": "link",
       "title": "我的GitHub",
       "enTitle": "My GitHub Account",
-      "typeDetail": {
-        "url": "https://github.com/0711kps"
-      },
-      "imgIndex": 1
+      "imgIndex": 1,
+      "cellEvent": {
+        "type": "link",
+        "detail": {
+          "url": "https://github.com/0711kps"
+        }
+      }
     }
   ]
 }
