@@ -6,41 +6,6 @@ import { Hint, Cell, VimeoPlayer, Resume } from './component'
 const popup = document.getElementById('popup')
 let hintLock = false
 
-const cellActions = {
-  vimeo: detail => {
-    actions.updatePopUp({active: true, content: '', type: ''})
-    //hintLock = true
-    //hintBox.classList.add('active')
-    //zhHint.innerText = '請稍等...'
-    //enHint.innerText = 'please wait...'
-    //let vimeoEvent = () => {
-      //popup.classList.remove('visible')
-      //hintLock = false
-      //document.body.removeAttribute('style')
-      //hintBox.classList.remove('active')
-      //zhHint.innerText = ''
-      //enHint.innerText = ''
-      //setTimeout(() => {
-        //popup.classList.remove('exist')
-        //iframe.remove()
-      //}, 200)
-      //popup.removeEventListener('click', vimeoEvent)
-    //}
-    //popup.addEventListener('click', vimeoEvent)
-    //let iframe = document.createElement('iframe')
-    //iframe.classList.add('vimeo-player')
-    //iframe.frameborder = '0'
-    //iframe.src = `https://player.vimeo.com/video/${detail.vimeoId}`
-    //popup.appendChild(iframe)
-    //popup.classList.add('exist')
-    //iframe.onload = () => {
-      //hintBox.classList.remove('active')
-      //popup.classList.add('visible')
-      //hintLock = false
-    //}
-  }
-}
-
 const state = {
   cells: [],
   hint: {
@@ -74,7 +39,7 @@ const actions = {
         return { popup: { active: true, type: cellEvent.type, detail: cellEvent.detail } }
         break
       case 'resume':
-        return { popup: { active: true } }
+      return { popup: { active: true, type: cellEvent.type, detail: cellEvent.detail } }
         break
     }
   },

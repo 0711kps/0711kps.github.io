@@ -6,7 +6,80 @@
       "imgIndex": 0,
       "cellEvent": {
         "type": "resume",
-        "detail": null
+        "detail": {
+          "MyName": [
+            {
+              "value": "Azuma Shibada"
+            }
+          ],
+          "EducationalLevel": [
+            {
+              "value": "College"
+            }
+          ],
+          "MySkill": [
+            {
+              "value": "1 year of development experience in Linux",
+              "tooltip": "I've tried a lot of distro before, like Arch, Ubuntu, Debian, Cent, Fedora, Nix, etc"
+            },
+            {
+              "value": "1 year of development experience in Ruby on Rails"
+            },
+            {
+              "value": "2 years of development experience in modern website",
+              "tooltip": "CSS3, HTML5, Javascript, etc"
+            }
+          ],
+          "MyExperience": [
+            {
+              "value": " year in IMO of Taiwan's National Fire Agency, Ministry of the Interior as Proxy Assistant Technical Specialist",
+              "tooltip": "Information Management Office"
+            },
+            {
+              "value": "1 year in largest network ad services company in Taiwan As R&D engineer"
+            }
+          ],
+          "RecentlyInterested": [
+            {
+              "value": "WASM",
+              "tooltip": "WebAssembly"
+            },
+            {
+              "value": "PWA",
+              "tooltip": "Progressive Web Apps"
+            },
+            {
+              "value": "realtime streaming",
+            },
+            {
+              "value": "block chain"
+            },
+            {
+              "value": "AI"
+            },
+            {
+              "value": "Web VR"
+            },
+            {
+              "value": "Fuchsia and Flutter"
+            }
+          ],
+          "Hobbies": [
+            {
+              "value": "Cooking"
+            },
+            {
+              "value": "Learning language"
+            },
+            {
+              "value": "Watching japanese variety show"
+            },
+            {
+              "value": "Playing with furry animals",
+              "tooltip": "especially Shiba inu <3"
+            }
+          ]
+        }
       }
     },
     {

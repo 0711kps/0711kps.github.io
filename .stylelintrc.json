@@ -1,0 +1,8 @@
+{
+  "rules": {
+    "declaration-colon-space-after": "always",
+    "indentation": [2 , {
+     "except": ["block"]
+    }]
+  }
+}
