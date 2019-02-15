@@ -86,8 +86,8 @@ body {
   transition: opacity 300ms;
   transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
   transform: translate(-50%, -50%);
-  background-color: hsla(0, 0%, 0%, 0.9);
-  background-image: radial-gradient(gray, transparent)
+  background-color: hsla(0, 0%, 0%, 0.6);
+  background-image: radial-gradient(hsla(20, 100%, 100%, 0.2), transparent)
 }
 #popup.active {
   opacity: 1;
@@ -114,21 +114,18 @@ body {
 #resume {
   display: flex;
   position: fixed;
-  background-color: hsl(0, 60%, 60%);
   width: 100%;
   flex-direction: column;
   padding: 5px;
-  overflow-y: scroll;
-  width: 80vw;
-  max-height: 80vh;
+  overflow-y: auto;
+  width: 90vmin;
+  max-height: 50vmin;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
 }
 #resume > .list {
   margin-bottom: 5px;
-  background-color: hsl(200, 60%, 60%);
-  display: flex;
   flex-direction: row;
   padding: 5px;
 }
@@ -136,17 +133,17 @@ body {
   margin-bottom: 0px;
 }
 .list > .list-title {
-  background-color: hsl(320, 60%, 60%);
   flex-basis: 0;
   flex-grow: 3;
+  padding: 0 10px;
+  border-bottom: 3px solid black;
+  width: fit-content;
   margin-right: 5px;
-  text-align: center;
   font-style: italic;
   font-weight: bold;
-  text-decoration: underline;
+  font-size: 2.2vw;
 }
 .list > .list-contents {
-  background-color: hsl(120, 60%, 60%);
   flex-basis: 0;
   flex-grow: 7;
   display: flex;
@@ -154,10 +151,10 @@ body {
   padding: 5px;
 }
 .list-contents > .item {
-  background-color: hsl(40, 60%, 60%);
   flex-grow: 1;
   margin-bottom: 5px;
   padding: 5px;
+  margin-left: 20px;
 }
 .list-contents > .item:last-child {
   margin-bottom: 0;

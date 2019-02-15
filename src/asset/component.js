@@ -44,22 +44,16 @@ const Hint = ({ active, zh, en }) => (
   </div>
 )
 
-// const List = (items) => (
-//   {items.map(item => (
-//       <div class='item' title={item.tooltip}>{item.value}</div>
-//   ))}
-// )
-
 const Resume = ({ detail }) => (
   <div id='resume'>
     {Object.keys(detail).map(key =>(
       <div class='list'>
-        <div class='list-title'>{key}</div>
-        <div class='list-contents'>
+        <div class='list-title'>{key.split(/(?=[A-Z])/).join(' ')}</div>
+        <ul class='list-contents'>
           {detail[key].map(item => (
-            <div class='item' title={item.tooltip}>{item.value}</div>
+            <li class='item' title={item.tooltip}>{item.value}</li>
           ))}
-        </div>
+        </ul>
       </div>
     ))}
   </div>
