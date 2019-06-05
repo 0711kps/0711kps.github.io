@@ -4,16 +4,15 @@
   "description": "my coding works gallery site",
   "main": "index.html",
   "scripts": {
-    "s": "parcel src/index.html --out-dir=./dev_public",
-    "b": "parcel build src/index.html --out-dir=./",
-    "t": "node test/test-lib.js"
+    "s": "parcel src/index.html --out-dir=/tmp",
+    "b": "parcel build src/index.html --out-dir=./"
   },
   "keywords": [],
   "author": "donny azuma",
   "license": "ISC",
   "dependencies": {
-    "@hyperapp/transitions": "^1.0.2",
-    "hyperapp": "^1.2.9"
+    "hyperapp": "^1.2.9",
+    "hyperapp-transitions": "^1.0.2"
   },
   "devDependencies": {
     "parcel-bundler": "^1.11.0"

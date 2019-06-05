@@ -134,6 +134,17 @@
           "url": "https://github.com/0711kps"
         }
       }
+    },
+    {
+      "title": "亞馬遜評論收集器",
+      "enTitle": "Amazon Reviews Collector",
+      "imgIndex": 6,
+      "cellEvent": {
+        "type": "link",
+        "detail": {
+          "url": "https://amazon-reviews-collector.herokuapp.com"
+        }
+      }
     }
   ]
 }

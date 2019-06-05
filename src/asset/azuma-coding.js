@@ -1,5 +1,5 @@
 import { h, app } from 'hyperapp'
-import { Enter, Exit } from '@hyperapp/transitions'
+import { Enter, Exit } from 'hyperapp-transitions'
 import JSONinfo from './cellsInfo.json'
 import { configurePosition, Config } from './mylib'
 import { Hint, Cell, VimeoPlayer, Resume } from './component'
