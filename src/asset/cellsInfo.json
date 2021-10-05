@@ -99,18 +99,9 @@
       "imgIndex": 2,
       "cellEvent": {
         "type": "vimeo",
-        "vimeoId": "024129889"
-      }
-    },
-    {
-      "title": "密碼君",
-      "enTitle": "Password Kun",
-      "imgIndex": 5,
-      "cellEvent": {
-        "type": "link",
-        "detail": {
-          "url": "https://github.com/0711kps/password_kun"
-        }
+	"detail": {
+	  "vimeoId": "317644317"
+	}
       }
     },
     {
@@ -132,17 +123,6 @@
         "type": "link",
         "detail": {
           "url": "https://github.com/0711kps"
-        }
-      }
-    },
-    {
-      "title": "亞馬遜評論收集器",
-      "enTitle": "Amazon Reviews Collector",
-      "imgIndex": 6,
-      "cellEvent": {
-        "type": "link",
-        "detail": {
-          "url": "https://amazon-reviews-collector.herokuapp.com"
         }
       }
     }
